@@ -1,0 +1,215 @@
+version: "2.0"
+
+intents:
+  - bot_challenge
+  - countAllNodes
+  - count_components
+  - deselect_component
+  - goodbye
+  - greet
+  - move_down
+  - move_left
+  - move_right
+  - move_up
+  - my_name_is
+  - select_biggest_component
+  - select_component
+  - select_smallest_component
+  - showAllNodes
+  - showDetailInfoBundles
+  - showLargestCompilationUnit
+  - showNodeInformation
+  - showProjectInformation
+  - summarize_information
+  - zoom_in
+  - zoom_out
+ 
+
+entities:
+  - Exports
+  - GPE
+  - Imports
+  - Methods
+  - PERSON
+  - bundle
+  - bundles
+  - compilationUnit
+  - component_name
+  - component_type
+  - component_type_child
+  - component_type_parent
+  - components
+  - exports
+  - imports
+  - node
+  - nodeType
+  - package
+  - packages
+  - project
+  - restaurant
+  - services
+
+slots:
+  bundle:
+    type: text
+  compilationUnit:
+    type: text
+  node:
+    type: text
+  nodeType:
+    type: text
+  package:
+    type: text
+  project:
+    type: text
+    initial_value: remote component environment
+
+responses:
+  utter_login:
+  - text: "Go ahead, try this http://127.0.0.1:8001/login"
+    
+  utter_greet:
+  - text: "Hey! How are you?"
+
+  utter_chitchat/mood_unhappy:
+  - text: "Here is something to cheer you up:"
+    image: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/jokes-for-kids-honeycombs-164703-1661358025.jpeg"
+
+  utter_chitchat/mood_great:
+  - text: "Great, carry on!"
+
+  utter_chitchat/bot_challenge:
+    - text: "I am a bot, powered by DoctorSina ."
+
+  utter_faq/shipping_duration:
+  - text: "Standard Shipping usually takes about 5-7 business days. Premium Shipping takes about 2-3 business days."
+
+  utter_faq/payment_modes:
+  - text: "Payment mode we are supporting:\nCOD\nDebit/Credit cards\nEMI\nWallets."
+
+  utter_faq/track_product:
+  - text: "You can track your product from accounts -> Orders. There you will find list of orders and select one of them to track."
+
+  utter_faq/return_policy:
+  - text: "If you received a product and want to return it. You can return within 14 days of delivery date."
+
+  utter_outofscope:
+  - text: "Sorry, I wasn't able to understand. Could you please rephrase it?"
+
+  utter_ask_name:
+  - text: "Could you please tell me your name?"
+
+  utter_ask_email:
+  - text: "Can you please provide me your email address?"
+
+  utter_ask_phone_number:
+  - text: "Can you please provide me your phone number?"
+
+  utter_ask_message:
+  - text: "Please tell me your query so I can forward that to our team."
+
+  utter_ask_confirm_details:
+  - buttons:
+    - title: Yes
+      payload: Yes
+    - title: No
+      payload: No
+    text: "These are the details I captured. Please confirm them below:\n Name: {name}\nEmail: {email}\nPhone No: {phone_number}\nMessage: {message}"
+
+  utter_mail_success:
+  - text: "I have mailed all details to our team. You will be reverted back within 48hrs."
+
+  utter_mail_canceled:
+  - text: "I have canceled the mail. Anything else you want help with?"
+
+  utter_goodbye:
+    - text: "Bye"
+
+actions:
+
+  - action_listen
+  - action_restart
+  - action_session_start
+  - action_default_fallback
+  - action_deactivate_loop
+  - action_revert_fallback_events
+  - action_default_ask_affirmation
+  - action_default_ask_rephrase
+  - action_two_stage_fallback
+  - action_unlikely_intent
+  - action_back
+  - action_count_all_nodes
+  - action_deselect_component
+  - action_get_biggest_component
+  - action_get_smallest_component
+  - action_give_project_information
+  - action_goodbye
+  - action_greet
+  - action_move_down
+  - action_move_left
+  - action_move_right
+  - action_move_up
+  - action_reset
+  - action_select_component
+  - action_show_all_nodes
+  - action_show_detail_info_bundles
+  - action_show_exports_in_bundle
+  - action_show_largest_compilationUnit
+  - action_show_node_information
+  - action_zoom_in
+  - action_zoom_out
+  - greet
+  - utter_chitchat
+  - utter_faq
+  - utter_happy
+  - utter_goodbye
+  - utter_greet
+  - utter_cheer_up
+  - utter_did_that_help
+  - utter_iamabot
+  - openai_action
+  - utter_ask_confirm_details
+  - utter_ask_email
+  - utter_ask_message
+  - utter_ask_name
+  - utter_chitchat/bot_challenge
+  - utter_chitchat/mood_great
+  - utter_chitchat/mood_unhappy
+  - utter_faq/payment_modes
+  - utter_faq/return_policy
+  - utter_faq/shipping_duration
+  - utter_faq/track_product
+  - utter_login
+  - utter_mail_canceled
+  - utter_mail_success
+  - utter_outofscope
+  - contact_us_form
+  - action_submit_contact_us_form
+
+
+forms:
+  contact_us_form:
+    required_slots:
+      name:
+      - type: from_text
+      email:
+      - type: from_entity
+        entity: email
+      phone_number:
+      - type: from_entity
+        entity: number
+      message:
+      - type: from_text
+      confirm_details:
+      - intent: affirm
+        value: yes
+        type: from_intent
+      - intent: deny
+        value: no
+        type: from_intent
+
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

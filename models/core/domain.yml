@@ -1,0 +1,164 @@
+version: '2.0'
+config:
+  store_entities_as_slots: true
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- chitchat:
+    is_retrieval_intent: true
+    use_entities: true
+- faq:
+    is_retrieval_intent: true
+    use_entities: true
+- bot_challenge:
+    use_entities: true
+- countAllNodes:
+    use_entities: true
+- count_components:
+    use_entities: true
+- deselect_component:
+    use_entities: true
+- goodbye:
+    use_entities: true
+- greet:
+    use_entities: true
+- move_down:
+    use_entities: true
+- move_left:
+    use_entities: true
+- move_right:
+    use_entities: true
+- move_up:
+    use_entities: true
+- my_name_is:
+    use_entities: true
+- select_biggest_component:
+    use_entities: true
+- select_component:
+    use_entities: true
+- select_smallest_component:
+    use_entities: true
+- showAllNodes:
+    use_entities: true
+- showDetailInfoBundles:
+    use_entities: true
+- showLargestCompilationUnit:
+    use_entities: true
+- showNodeInformation:
+    use_entities: true
+- showProjectInformation:
+    use_entities: true
+- summarize_information:
+    use_entities: true
+- zoom_in:
+    use_entities: true
+- zoom_out:
+    use_entities: true
+entities:
+- Exports
+- GPE
+- Imports
+- Methods
+- PERSON
+- bundle
+- bundles
+- compilationUnit
+- component_name
+- component_type
+- component_type_child
+- component_type_parent
+- components
+- exports
+- imports
+- node
+- nodeType
+- package
+- packages
+- project
+- restaurant
+- services
+slots:
+  bundle:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  compilationUnit:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  node:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  nodeType:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  package:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: null
+    auto_fill: true
+    influence_conversation: true
+  project:
+    type: rasa.shared.core.slots.TextSlot
+    initial_value: remote component environment
+    auto_fill: true
+    influence_conversation: true
+responses:
+  utter_happy:
+  - text: I'm happy to help!
+  - text: Glad I could be of assistance.
+  utter_greet:
+  - text: Hello
+  - text: Hey! How can I help you?
+  utter_goodbye:
+  - text: Goodbye
+  - text: Bye
+actions:
+- action_back
+- action_count_all_nodes
+- action_deactivate_loop
+- action_default_ask_affirmation
+- action_default_ask_rephrase
+- action_default_fallback
+- action_deselect_component
+- action_get_biggest_component
+- action_get_smallest_component
+- action_give_project_information
+- action_goodbye
+- action_greet
+- action_listen
+- action_move_down
+- action_move_left
+- action_move_right
+- action_move_up
+- action_reset
+- action_restart
+- action_revert_fallback_events
+- action_select_component
+- action_session_start
+- action_show_all_nodes
+- action_show_detail_info_bundles
+- action_show_exports_in_bundle
+- action_show_largest_compilationUnit
+- action_show_node_information
+- action_two_stage_fallback
+- action_unlikely_intent
+- action_zoom_in
+- action_zoom_out
+- greet
+- utter_cheer_up
+- utter_chitchat
+- utter_did_that_help
+- utter_faq
+- utter_goodbye
+- utter_greet
+- utter_happy
+- utter_iamabot
+forms: {}
+e2e_actions: []
